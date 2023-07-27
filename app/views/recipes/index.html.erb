@@ -1,15 +1,15 @@
 <div class="container mt-3 mb-5">
   <% @recipes.each do |recipe| %>
-  <div class="row">
-    <div class="col-9">
+  <div class="d-flex justify-content-between">
+    <div class="">
        <%= recipe.name %>
     </div>
-    <div class="col-3">
+    <div class="">
       <%= link_to "Edit", recipe, class:"btn" %>
     </div>
   </div>
   <% end %>
-  <%= link_to "New recipe", new_recipe_path, class:"btn btn-dark", style:"position: fixed; bottom: 40px; right: 0px;" %>
+  <%= link_to "New recipe", new_recipe_path, class:"btn btn-dark", style:"position: fixed; bottom: 40px; right: 2px;" %>
 </div>
 
 
