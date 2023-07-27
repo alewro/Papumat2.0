@@ -1,0 +1,10 @@
+<div class="container">
+
+  <%= render @recipe %>
+
+  <div class="btn-group">
+    <%= link_to "Edit", edit_recipe_path(@recipe), class:"btn" %>
+    <%= button_to "Delete", @recipe, method: :delete, class:"btn" %>
+    <%= link_to "Back", recipes_path, class:"btn" %>
+  </div>
+</div>
