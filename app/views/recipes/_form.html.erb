@@ -22,6 +22,11 @@
   </div>
 
   <div>
+    <%= form.label :recipe_category, style: "display: block" %>
+    <%= form.select :recipe_category_id, options_for_select(@recipe_categories.collect { |cat| [cat.name, cat.id] }) %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
