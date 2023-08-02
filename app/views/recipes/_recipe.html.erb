@@ -12,4 +12,9 @@
     <%= recipe.description %>
   </p>
 
+  <% recipe.products.each do |product| %>
+    <%= product.name %>
+    <%= product.quantity%>
+  <% end %>
+
 </div>

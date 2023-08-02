@@ -3,7 +3,7 @@
    
     <div class="d-flex justify-content-between">
       <div class="">
-        <%= recipe.name %>
+        <%= link_to recipe.name, recipe %>
       </div>
       <div class="">
         <%= link_to "Edit", edit_recipe_path(recipe), class:"btn" %>
