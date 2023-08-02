@@ -3,4 +3,6 @@ class Recipe < ApplicationRecord
   validates :description, presence: true
   belongs_to :recipe_category
   validates :recipe_category_id, presence: true
+  has_many :products, dependent: :destroy, inverse_of: :recipe
+  accepts_nested_attributes_for :products, allow_destroy: true, reject_if: :all_blank
 end
