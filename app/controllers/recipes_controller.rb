@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy ]
   before_action :set_user
   before_action :set_recipe_categories
+  before_action :set_product_categories
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.all
@@ -66,7 +67,7 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :recipe_category_id, products_attributes: [:id, :name, :quantity, :_destroy])
+      params.require(:recipe).permit(:name, :description, :recipe_category_id, products_attributes: [:id, :name, :quantity, :product_category_id, :_destroy])
     end
 
     def set_user
@@ -75,5 +76,9 @@ class RecipesController < ApplicationController
 
     def set_recipe_categories
       @recipe_categories = RecipeCategory.all.order(:name)
+    end
+
+    def set_product_categories
+      @product_categories = ProductCategory.all.order(:name)
     end
 end
