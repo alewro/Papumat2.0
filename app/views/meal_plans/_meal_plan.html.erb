@@ -3,12 +3,19 @@
   <br/>
 
   <% @category.each do |category|%>
-  <h4><%= category.name %></h4>
-  <% @meal_plan.recipes.each do |recipe| %>
-    <% if category.id == recipe.recipe_category_id %>
-      <%= link_to recipe.name, recipe_path(recipe) %><br/>
+    <h4><%= category.name %></h4>
+    <% @meal_plan.recipes.each do |recipe| %>
+      <% if category.id == recipe.recipe_category_id %>
+        <div class="d-flex justify-content-between">
+          <div id="el" class="el">
+            <%= recipe.name %>
+          </div>
+          <div>
+            <%= link_to "Edit", edit_recipe_path(recipe), class:"btn" %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
 
 </div>
