@@ -1,0 +1,32 @@
+<%= form_with(model: meal_plan) do |form| %>
+  <% if meal_plan.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(meal_plan.errors.count, "error") %> prohibited this meal_plan from being saved:</h2>
+
+      <ul>
+        <% meal_plan.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+     <%= form.collection_check_boxes :recipe_ids, Recipe.all, :id, :name do |r| %>
+        <%= r.label %><%= r.check_box %>
+     <% end %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

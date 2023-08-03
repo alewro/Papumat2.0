@@ -1,0 +1,19 @@
+<div id="<%= dom_id meal_plan %>">
+  <p>
+    <strong>Start date:</strong>
+    <%= meal_plan.start_date %>
+  </p>
+
+  <p>
+    <strong>End date:</strong>
+    <%= meal_plan.end_date %>
+  </p>
+
+    <p>
+    <strong>Recipes:</strong>
+    <% meal_plan.recipes.each do |recipe| %>
+      <%= recipe.name %>
+    <% end %>
+  </p>
+
+</div>
