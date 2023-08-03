@@ -1,5 +1,6 @@
 class MealPlansController < ApplicationController
   before_action :set_meal_plan, only: %i[ show edit update destroy ]
+  before_action :set_recipes, only: %i[ new edit]
 
   # GET /meal_plans or /meal_plans.json
   def index
@@ -14,7 +15,6 @@ class MealPlansController < ApplicationController
   # GET /meal_plans/new
   def new
     @meal_plan = MealPlan.new
-    @recipes = Recipe.all.order(:recipe_category_id)
   end
 
   # GET /meal_plans/1/edit
@@ -68,5 +68,9 @@ class MealPlansController < ApplicationController
     # Only allow a list of trusted parameters through.
     def meal_plan_params
       params.require(:meal_plan).permit(:start_date, :end_date, {recipe_ids: []} )
+    end
+
+    def set_recipes
+      @recipes = Recipe.all.order(:recipe_category_id)
     end
 end
