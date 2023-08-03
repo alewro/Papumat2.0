@@ -1,14 +1,16 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Meal plans</h1>
 
-<div id="meal_plans">
+<div class="container mt-3 mb-5">
   <% @meal_plans.each do |meal_plan| %>
-    <%= render meal_plan %>
-    <p>
-      <%= link_to "Show this meal plan", meal_plan %>
-    </p>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= link_to "#{meal_plan.start_date.strftime('%d-%m')}-#{meal_plan.end_date.strftime('%d-%m')}", meal_plan %>
+      </div>
+      <div>
+        <%= link_to "Edit", edit_meal_plan_path(meal_plan), class:"btn" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New meal plan", new_meal_plan_path %>
+<%= link_to "New meal plan", new_meal_plan_path, class:"btn btn-dark", style:"position: fixed; bottom: 40px; right: 2px;" %>

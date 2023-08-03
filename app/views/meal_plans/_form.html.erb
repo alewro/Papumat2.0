@@ -22,7 +22,7 @@
   </div>
 
   <div>
-     <%= form.collection_check_boxes :recipe_ids, Recipe.all, :id, :name do |r| %>
+     <%= form.collection_check_boxes :recipe_ids, @recipes, :id, :name do |r| %>
         <%= r.label %><%= r.check_box %>
      <% end %>
   </div>

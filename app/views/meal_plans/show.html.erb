@@ -1,10 +1,6 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @meal_plan %>
-
-<div>
-  <%= link_to "Edit this meal plan", edit_meal_plan_path(@meal_plan) %> |
-  <%= link_to "Back to meal plans", meal_plans_path %>
-
-  <%= button_to "Destroy this meal plan", @meal_plan, method: :delete %>
+<div class="container mt-3 mb-5">
+    <%= render @meal_plan %>
+  <div>
+    <%= link_to "Back to meal plans", meal_plans_path %>
+  </div>
 </div>

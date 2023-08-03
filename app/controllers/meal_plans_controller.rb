@@ -8,11 +8,13 @@ class MealPlansController < ApplicationController
 
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
+    @category = RecipeCategory.all
   end
 
   # GET /meal_plans/new
   def new
     @meal_plan = MealPlan.new
+    @recipes = Recipe.all.order(:recipe_category_id)
   end
 
   # GET /meal_plans/1/edit
