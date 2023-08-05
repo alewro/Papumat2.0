@@ -25,8 +25,8 @@ ProductCategory.create(name:"bread")
 
 #Recipes create
 10.times do |x|
-  Recipe.create(name: "#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 1, recipe_done_id: 1)
-  Recipe.create(name: "0#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 2, recipe_done_id: 2)
-  Recipe.create(name: "1#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 3, recipe_done_id: 2)
-  Recipe.create(name: "2#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 4, recipe_done_id: 1)
+  Recipe.create(name: "#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 1)
+  Recipe.create(name: "0#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 2)
+  Recipe.create(name: "1#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 3)
+  Recipe.create(name: "2#{x} recipe", description: "Description goes brrr for #{x} time", recipe_category_id: 4)
 end

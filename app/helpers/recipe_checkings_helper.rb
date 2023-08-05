@@ -1,0 +1,2 @@
+module RecipeCheckingsHelper
+end

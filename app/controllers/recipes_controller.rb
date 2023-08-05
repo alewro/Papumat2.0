@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[ show edit update destroy update_recipe_done ]
+  before_action :set_recipe, only: %i[ show edit update destroy ]
   before_action :set_user
   before_action :set_recipe_categories
   before_action :set_product_categories
@@ -59,15 +59,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  def update_recipe_done
-    if @recipe.recipe_done_id == 1
-      @recipe.update(recipe_done_id: 2)
-    elsif @recipe.recipe_done_id == 2
-      @recipe.update(recipe_done_id: 1)
-    end
-    redirect_to meal_plans_path(MealPlan.find(:last))
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
@@ -76,7 +67,7 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :recipe_category_id, :recipe_done_id, products_attributes: [:id, :name, :quantity, :product_category_id, :_destroy])
+      params.require(:recipe).permit(:name, :description, :recipe_category_id, products_attributes: [:id, :name, :quantity, :product_category_id, :_destroy])
     end
 
     def set_user

@@ -1,8 +1,9 @@
 class AddAssembliesParts < ActiveRecord::Migration[7.0]
   def change
-    create_table :meal_plans_recipes, id: false do |t|
+    create_table :recipe_checkings do |t|
       t.belongs_to :recipe
       t.belongs_to :meal_plan
+      t.boolean :is_done
     
       t.timestamps
     end

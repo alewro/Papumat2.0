@@ -8,7 +8,8 @@ class Recipe < ApplicationRecord
   has_many :products, dependent: :destroy, inverse_of: :recipe
   accepts_nested_attributes_for :products, allow_destroy: true, reject_if: :all_blank
 
-  has_and_belongs_to_many :meal_plans
+  has_many :meal_plans, through: :recipe_checkings
+  has_one :recipe_checking
 
-  belongs_to :recipe_done
+  has_and_belongs_to_many :meal_plans
 end
