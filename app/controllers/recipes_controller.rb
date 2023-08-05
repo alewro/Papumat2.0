@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[ show edit update destroy ]
+  before_action :set_recipe, only: %i[ show edit update destroy update_recipe_done ]
   before_action :set_user
   before_action :set_recipe_categories
   before_action :set_product_categories
@@ -57,6 +57,15 @@ class RecipesController < ApplicationController
       format.html { redirect_to recipes_url, notice: "Recipe was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def update_recipe_done
+    if @recipe.recipe_done_id == 1
+      @recipe.update(recipe_done_id: 2)
+    elsif @recipe.recipe_done_id == 2
+      @recipe.update(recipe_done_id: 1)
+    end
+    redirect_to meal_plans_path(MealPlan.find(:last))
   end
 
   private

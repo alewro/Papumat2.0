@@ -27,6 +27,9 @@ class MealPlansController < ApplicationController
 
     respond_to do |format|
       if @meal_plan.save
+        @meal_plan.recipes.each do |recipe|
+          recipe.update(recipe_done_id: 1)
+        end
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Meal plan was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
