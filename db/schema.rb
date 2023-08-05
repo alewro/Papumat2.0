@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_02_133102) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_05_142053) do
   create_table "meal_plans", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -50,13 +50,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_133102) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "recipe_dones", force: :cascade do |t|
+    t.boolean "is_done", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "recipe_category_id", null: false
+    t.integer "recipe_done_id", null: false
     t.index ["recipe_category_id"], name: "index_recipes_on_recipe_category_id"
+    t.index ["recipe_done_id"], name: "index_recipes_on_recipe_done_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,4 +82,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_133102) do
   add_foreign_key "products", "product_categories"
   add_foreign_key "products", "recipes"
   add_foreign_key "recipes", "recipe_categories"
+  add_foreign_key "recipes", "recipe_dones"
 end

@@ -9,4 +9,6 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :products, allow_destroy: true, reject_if: :all_blank
 
   has_and_belongs_to_many :meal_plans
+
+  belongs_to :recipe_done
 end
