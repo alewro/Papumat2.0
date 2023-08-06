@@ -33,6 +33,14 @@ class MealPlansController < ApplicationController
                                 recipe_id: recipe_checking,
                                 is_done: false)
         end
+        @meal_plan.recipes.each do |recipe|
+          recipe.products.each do |product|
+            ShoppingList.create(product_name: product.name,
+                                product_quantity: product.quantity,
+                                product_category: product.product_category.name,
+                                is_bought: false)
+          end
+        end
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Meal plan was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else

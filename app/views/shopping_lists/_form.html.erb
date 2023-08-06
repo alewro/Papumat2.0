@@ -1,0 +1,36 @@
+<%= form_with(model: shopping_list) do |form| %>
+  <% if shopping_list.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(shopping_list.errors.count, "error") %> prohibited this shopping_list from being saved:</h2>
+
+      <ul>
+        <% shopping_list.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.hidden_field :is_bought, value: false %>
+  </div>
+
+  <div>
+    <%= form.label :product_name, style: "display: block" %>
+    <%= form.text_field :product_name, autocomplete: 'off' %>
+  </div>
+
+  <div>
+    <%= form.label :product_quantity, style: "display: block" %>
+    <%= form.number_field :product_quantity, autocomplete: 'off' %>
+  </div>
+
+  <div>
+    <%= form.label :product_category, style: "display: block" %>
+    <%= form.select :product_category, options_for_select(@product_categories.collect { |cat| [cat.name, cat.name] }) %>
+  </div>
+
+  <div>
+    <%= form.submit "Add product" %>
+  </div>
+<% end %>
