@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :all_products
   resources :shopping_lists
   get 'recipe_checkings/new'
   get 'recipe_checkings/edit'

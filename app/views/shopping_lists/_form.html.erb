@@ -26,8 +26,7 @@
   </div>
 
   <div>
-    <%= form.label :product_category, style: "display: block" %>
-    <%= form.select :product_category, options_for_select(@product_categories.collect { |cat| [cat.name, cat.name] }) %>
+    <%= form.hidden_field :product_category, value: "New" %>
   </div>
 
   <div>

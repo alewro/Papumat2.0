@@ -24,10 +24,16 @@ class ShoppingListsController < ApplicationController
   # POST /shopping_lists or /shopping_lists.json
   def create
     @shopping_list = ShoppingList.new(shopping_list_params)
-    @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name, product_category: @shopping_list.product_category)
+    @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name)
     @records_quantity = @shopping_list_in_db.count
+    @product = AllProduct.where(name: @shopping_list.product_name)
     respond_to do |format|
       if @shopping_list.save
+        if @product&.exists?
+          @shopping_list.update(product_category: @product.first.category)
+        else
+          AllProduct.create(name: @shopping_list.product_name, category: "New")
+        end
         if @shopping_list_in_db.count > 1
           @shopping_list_in_db.update(product_quantity: @shopping_list_in_db.first.product_quantity + @shopping_list.product_quantity)
           @shopping_list.destroy
