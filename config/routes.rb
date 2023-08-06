@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   post 'change_is_done', to: "recipes#change_is_done"
+  post 'change_is_bought', to: "shopping_lists#change_is_bought"
 
   delete 'shopping_lists', to: "shopping_lists#all_delete"
   # Defines the root path route ("/")

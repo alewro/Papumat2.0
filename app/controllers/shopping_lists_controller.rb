@@ -3,7 +3,7 @@ class ShoppingListsController < ApplicationController
 
   # GET /shopping_lists or /shopping_lists.json
   def index
-    @shopping_lists = ShoppingList.all
+    @shopping_lists = ShoppingList.all.order(:product_category)
     @shopping_list = ShoppingList.new
     @product_categories = ProductCategory.all
   end
@@ -67,6 +67,17 @@ class ShoppingListsController < ApplicationController
   def all_delete
     ShoppingList.delete_all
     redirect_to shopping_lists_path
+  end
+
+  def change_is_bought
+    @shopping_list = ShoppingList.find_by(id: params[:id])
+    if @shopping_list.is_bought == true
+      @shopping_list.update(is_bought: false)
+      redirect_to shopping_lists_path
+    elsif @shopping_list.is_bought == false
+      @shopping_list.update(is_bought: true)
+      redirect_to shopping_lists_path
+    end
   end
 
   private

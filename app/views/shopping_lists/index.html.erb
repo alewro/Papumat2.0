@@ -1,10 +1,17 @@
 <h1>Shopping list</h1>
 <%= button_to "Clear", shopping_lists_path, method: :delete, class:"btn" %>
-
-<div id="shopping_lists">
-  <% @shopping_lists.each do |shopping_list| %>
-    <%= render shopping_list %>
-  <% end %>
+<div class="container">
+  <div id="shopping_lists">
+    <% @shopping_lists.each do |shopping_list| %>
+      <% if shopping_list.is_bought == false %>
+        <%= render shopping_list, class_name: "btn" %>
+      <% end %>
+    <% end %>
+    <% @shopping_lists.each do |shopping_list| %>
+      <% if shopping_list.is_bought == true %>
+        <%= render shopping_list, class_name: "btn text-decoration-line-through" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
-
 <%= render "form", shopping_list: @shopping_list%>
