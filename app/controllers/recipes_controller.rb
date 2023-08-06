@@ -59,6 +59,18 @@ class RecipesController < ApplicationController
     end
   end
 
+  def change_is_done
+    @recipe_checking = RecipeChecking.where(meal_plan_id: params[:meal_plan_id], recipe_id: params[:recipe_id]).first
+    @meal_plan = MealPlan.find(params[:meal_plan_id])
+    if @recipe_checking.is_done == true
+      @recipe_checking.update(is_done: false)
+      redirect_to meal_plan_path(@meal_plan)
+    elsif @recipe_checking.is_done == false
+      @recipe_checking.update(is_done: true)
+      redirect_to meal_plan_path(@meal_plan)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe

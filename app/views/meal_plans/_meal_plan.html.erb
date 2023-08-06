@@ -7,12 +7,12 @@
     <% @meal_plan.recipes.each do |recipe| %>
       <% if category.id == recipe.recipe_category_id %>
         <div class="d-flex justify-content-between">
-          <div class="<%= "linethrough" %>">
+          <div class="<%= "linethrough" if RecipeChecking.where(recipe_id: recipe.id, meal_plan_id: @meal_plan.id).first.is_done == true %>">
             <%= recipe.name %>
           </div>
           <div>
             <%= link_to "Edit", edit_recipe_path(recipe), class:"btn" %>
-
+            <%= button_to "Done", change_is_done_path, params: {meal_plan_id: @meal_plan.id, recipe_id: recipe.id}, method: :change_is_done, class:"btn" %>
           </div>
         </div>
       <% end %>

@@ -1,6 +1,7 @@
 class MealPlansController < ApplicationController
   before_action :set_meal_plan, only: %i[ show edit update destroy ]
   before_action :set_recipes, only: %i[ new edit]
+  before_action :set_recipe_checkings, only: %i[ show ]
 
   # GET /meal_plans or /meal_plans.json
   def index
@@ -27,6 +28,11 @@ class MealPlansController < ApplicationController
 
     respond_to do |format|
       if @meal_plan.save
+        @meal_plan.recipe_ids.each do |recipe_checking|
+          RecipeChecking.create(meal_plan_id: @meal_plan.id,
+                                recipe_id: recipe_checking,
+                                is_done: false)
+        end
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Meal plan was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
@@ -72,5 +78,9 @@ class MealPlansController < ApplicationController
 
     def set_recipes
       @recipes = Recipe.all.order(:recipe_category_id)
+    end
+
+    def set_recipe_checkings
+      @recipe_checkings = RecipeChecking.where(meal_plan_id: @meal_plan.id).all
     end
 end
