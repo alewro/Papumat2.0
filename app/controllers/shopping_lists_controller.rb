@@ -65,7 +65,7 @@ class ShoppingListsController < ApplicationController
   end
 
   def all_delete
-    ShoppingList.delete_all
+    ShoppingList.where(is_bought: true).delete_all
     redirect_to shopping_lists_path
   end
 
