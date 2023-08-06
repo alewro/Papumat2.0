@@ -19,6 +19,7 @@ class ShoppingListsController < ApplicationController
 
   # GET /shopping_lists/1/edit
   def edit
+    @product_categories = ProductCategory.all
   end
 
   # POST /shopping_lists or /shopping_lists.json
@@ -51,7 +52,8 @@ class ShoppingListsController < ApplicationController
   def update
     respond_to do |format|
       if @shopping_list.update(shopping_list_params)
-        format.html { redirect_to shopping_list_url(@shopping_list), notice: "Shopping list was successfully updated." }
+        AllProduct.where(name: @shopping_list.product_name).update(category: @shopping_list.product_category)
+        format.html { redirect_to shopping_lists_path }
         format.json { render :show, status: :ok, location: @shopping_list }
       else
         format.html { render :edit, status: :unprocessable_entity }

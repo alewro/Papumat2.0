@@ -1,7 +1,7 @@
 <div id="<%= dom_id shopping_list %>">
   <div class="d-flex justify-content-between">
     <div>
-      <%= shopping_list.product_category %>
+      <%= link_to shopping_list.product_category, edit_shopping_list_path(shopping_list),class:"btn" %>
     </div>
     <div>
       <%= button_to shopping_list.product_name, change_is_bought_path, params: {id: shopping_list.id}, method: :change_is_bought_path, class: class_name %>
