@@ -5,8 +5,7 @@
     <%= f.label :quantity %>
     <%= f.number_field :quantity, step: "0.01" %>
 
-    <%= f.label :product_category %>
-    <%= f.select :product_category_id, options_for_select(@product_categories.collect { |cat| [cat.name, cat.id] }) %>
+    <%= f.hidden_field :product_category_id, value: 5 %>
 
     <button type="button" data-action="nested-form#remove">X</button>
 

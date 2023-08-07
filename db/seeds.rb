@@ -22,6 +22,7 @@ ProductCategory.create(name:"diary")
 ProductCategory.create(name:"vegetables")
 ProductCategory.create(name:"fruit")
 ProductCategory.create(name:"bread")
+ProductCategory.create(name:"New")
 
 #Recipes create
 10.times do |x|

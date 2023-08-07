@@ -28,6 +28,8 @@ class MealPlansController < ApplicationController
 
     respond_to do |format|
       if @meal_plan.save
+        @bought_products = ShoppingList.where(is_bought: true)
+        @bought_products.delete_all
         @meal_plan.recipe_ids.each do |recipe_checking|
           RecipeChecking.create(meal_plan_id: @meal_plan.id,
                                 recipe_id: recipe_checking,
@@ -35,10 +37,19 @@ class MealPlansController < ApplicationController
         end
         @meal_plan.recipes.each do |recipe|
           recipe.products.each do |product|
-            ShoppingList.create(product_name: product.name,
+            @all_product = AllProduct.find_by(name: product.name)
+            if @all_product.category != ProductCategory.find_by(id: product.product_category_id).name
+              product.update(product_category_id: ProductCategory.find_by(name: @all_product.category).id)
+            end
+            @shopping_list = ShoppingList.create(product_name: product.name,
                                 product_quantity: product.quantity,
                                 product_category: product.product_category.name,
                                 is_bought: false)
+            @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name)
+              if @shopping_list_in_db.count > 1
+                @shopping_list_in_db.update(product_quantity: @shopping_list_in_db.first.product_quantity + @shopping_list.product_quantity)
+                @shopping_list.destroy
+              end
           end
         end
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Meal plan was successfully created." }

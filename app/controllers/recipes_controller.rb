@@ -27,6 +27,15 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+        @recipe.products.each do |product|
+          @all_product = AllProduct.find_by(name: product.name)
+          if @all_product.nil?
+            AllProduct.create(name: product.name, category: ProductCategory.find_by(id: product.product_category_id).name)
+          else
+            @category = ProductCategory.find_by(name: @all_product.category)
+            product.update(product_category_id: @category.id )
+          end
+        end
         format.html { redirect_to recipes_path }
         format.json { render :show, status: :created, location: @recipe }
       else
@@ -40,6 +49,15 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
+        @recipe.products.each do |product|
+          @all_product = AllProduct.find_by(name: product.name)
+          if @all_product.nil?
+            AllProduct.create(name: product.name, category: ProductCategory.find_by(id: product.product_category_id).name)
+          else
+            @category = ProductCategory.find_by(name: @all_product.category)
+            product.update(product_category_id: @category.id )
+          end
+        end
         format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated." }
         format.json { render :show, status: :ok, location: @recipe }
       else
