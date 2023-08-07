@@ -30,6 +30,7 @@ class ShoppingListsController < ApplicationController
     @product = AllProduct.where(name: @shopping_list.product_name)
     respond_to do |format|
       if @shopping_list.save
+        ShoppingList.where(is_bought: true, product_name: @shopping_list.product_name).delete_all
         if @product&.exists?
           @shopping_list.update(product_category: @product.first.category)
         else
