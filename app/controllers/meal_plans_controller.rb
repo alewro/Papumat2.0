@@ -65,6 +65,11 @@ class MealPlansController < ApplicationController
   def update
     respond_to do |format|
       if @meal_plan.update(meal_plan_params)
+        @meal_plan.recipe_ids.each do |recipe_checking|
+          RecipeChecking.create(meal_plan_id: @meal_plan.id,
+                                recipe_id: recipe_checking,
+                                is_done: false)
+        end
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Meal plan was successfully updated." }
         format.json { render :show, status: :ok, location: @meal_plan }
       else

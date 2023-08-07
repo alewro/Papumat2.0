@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
     <span class="navbar-brand mb-0 h1">Papumat 2.0</span>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete, class:"btn text-light" %>
   </div>
 </nav>
