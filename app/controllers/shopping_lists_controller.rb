@@ -37,13 +37,16 @@ class ShoppingListsController < ApplicationController
           AllProduct.create(name: @shopping_list.product_name, category: "New")
         end
         if @shopping_list_in_db.count > 1
-          @shopping_list_in_db.update(product_quantity: @shopping_list_in_db.first.product_quantity + @shopping_list.product_quantity)
+          @shopping_list.update(product_quantity: @shopping_list_in_db.first.product_quantity + @shopping_list.product_quantity)
+          @shopping_list_in_db.first.destroy
+        end
+        if @shopping_list.product_quantity <= 0
           @shopping_list.destroy
         end
         format.html { redirect_to shopping_lists_path }
         format.json { render :show, status: :created, location: @shopping_list }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @shopping_list.errors, status: :unprocessable_entity }
       end
     end

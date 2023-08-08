@@ -25,7 +25,6 @@ class MealPlansController < ApplicationController
   # POST /meal_plans or /meal_plans.json
   def create
     @meal_plan = MealPlan.new(meal_plan_params)
-
     respond_to do |format|
       if @meal_plan.save
         @bought_products = ShoppingList.where(is_bought: true)

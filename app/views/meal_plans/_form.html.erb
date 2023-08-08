@@ -13,16 +13,16 @@
 
   <div>
     <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
+    <%= form.date_field :start_date, value: Date.today %>
   </div>
 
   <div>
     <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
+    <%= form.date_field :end_date, value: Date.today + 7 %>
   </div>
 
   <div>
-     <%= form.collection_check_boxes :recipe_ids, @recipes, :id, :name do |r| %>
+     <%= form.collection_check_boxes :recipe_ids, Recipe.all.order(:recipe_category_id), :id, :name do |r| %>
         <%= r.label %><%= r.check_box %>
      <% end %>
   </div>
