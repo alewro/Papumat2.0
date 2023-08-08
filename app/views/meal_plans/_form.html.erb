@@ -21,11 +21,14 @@
     <%= form.date_field :end_date, value: Date.today + 7 %>
   </div>
 
-  <div>
-     <%= form.collection_check_boxes :recipe_ids, Recipe.all.order(:recipe_category_id), :id, :name do |r| %>
-        <%= r.label %><%= r.check_box %>
-     <% end %>
-  </div>
+  <% RecipeCategory.all.each do |label| %>
+    <%= label.name %>
+    <div>
+      <%= form.collection_check_boxes :recipe_ids, Recipe.where(recipe_category_id: label.id), :id, :name do |r| %>
+          <%= r.label %><%= r.check_box %>
+      <% end %>
+    </div>
+  <% end %>
   <div>
     <%= form.submit %>
   </div>
