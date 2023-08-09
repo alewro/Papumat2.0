@@ -25,7 +25,7 @@
     <%= label.name %>
     <div>
       <%= form.collection_check_boxes :recipe_ids, Recipe.where(recipe_category_id: label.id), :id, :name do |r| %>
-          <%= r.label %><%= r.check_box(class:"#{label.name}") %>
+          <%= r.label %><%= r.check_box(class:"recipe-checkbox", "data-category": "#{label.name}") %>
       <% end %>
     </div>
   <% end %>
@@ -35,29 +35,17 @@
       const endDate = document.getElementById("end-date").value;
       const sub = (Date.parse(endDate)- Date.parse(startDate))/(3600*24*1000);
 
-      const inputSalty = document.querySelectorAll('.SaltyBreakfast')
-      let countSalty=0
-      inputSalty.forEach(checkbox=>{
-        if(checkbox.checked) countSalty+=1
-      });
+      const recipeCheckboxes = [...document.querySelectorAll('.recipe-checkbox')];
 
-      const inputLunch = document.querySelectorAll('.Lunch')
-      let countLunch=0
-      inputLunch.forEach(checkbox=>{
-        if(checkbox.checked) countLunch+=1
-      });
-
-      const inputSweet = document.querySelectorAll('.SweetBreakfast')
-      let countSweet=0
-      inputSweet.forEach(checkbox=>{
-        if(checkbox.checked) countSweet+=1
-      });
-
-      const inputOneDick = document.querySelectorAll('.OneDick')
-      let countOneDick=0
-      inputOneDick.forEach(checkbox=>{
-        if(checkbox.checked) countOneDick+=1
-      });
+      const selectedCheckboxes = {};
+      for (const recipeCheckbox of recipeCheckboxes) {
+        const category = recipeCheckbox.getAttribute('data-category');
+        if (recipeCheckbox.checked) {
+          const current = selectedCheckboxes[category] || [];
+          current.push(recipeCheckbox);
+          selectedCheckboxes[category] = current;
+        }
+      }
 
       if(sub < 0){
         return;
@@ -67,11 +55,18 @@
         return;
       };
 
-      if(sub!=countSweet || sub!=countLunch || sub!=countOneDick || sub!=countSalty){
-        if(confirm(`You have ${sub} days selected and ${countSweet} sweet recipes, ${countLunch} lunch recipes, ${countOneDick} oneDick recipes and ${countSalty} salty recipes. Do you want to save anyway?`) == false) {
-        e.preventDefault();
+      let confirmMessage = '';
+      
+      for (const category of Object.keys(selectedCheckboxes)) {
+        const recipes = selectedCheckboxes[category];
+        confirmMessage += `${recipes.length} ${category} recipes\n`;
+      }
+
+      if (Object.values(selectedCheckboxes).find((list) => list.length != sub)) {
+        if (confirm(`You have ${sub} days selected and:\n${confirmMessage}\nDo you want to save meal plan anyway?`) === false) {
+          e.preventDefault();
         }
-      };
+      }
     }
   </script>
   <div>
