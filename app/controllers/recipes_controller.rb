@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_user
   before_action :set_recipe_categories
   before_action :set_product_categories
+  before_action :authenticate_user!
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.all

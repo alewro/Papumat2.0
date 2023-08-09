@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   delete 'shopping_lists', to: "shopping_lists#all_delete"
   # Defines the root path route ("/")
-  root "pages#index"
+  root "pages#set_roots"
 end

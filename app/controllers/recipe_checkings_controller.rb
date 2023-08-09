@@ -1,4 +1,6 @@
 class RecipeCheckingsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @recipe_checking = RecipeChecking.new
   end

@@ -1,5 +1,6 @@
 class ProductCategoriesController < ApplicationController
   before_action :set_product_category, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /recipe_categories or /recipe_categories.json
   def index
