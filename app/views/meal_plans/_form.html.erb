@@ -25,7 +25,7 @@
     <%= label.name %>
     <div>
       <%= form.collection_check_boxes :recipe_ids, Recipe.where(recipe_category_id: label.id), :id, :name do |r| %>
-          <%= r.label %><%= r.check_box(class:"recipe-checkbox", "data-category": "#{label.name}") %>
+          <%= r.check_box(class:"recipe-checkbox", :style => 'visibility: hidden', "data-category": "#{label.name}") %><%= r.label(class:"label-for-check") %>
       <% end %>
     </div>
   <% end %>
@@ -69,6 +69,7 @@
       }
     }
   </script>
+
   <div>
     <%= form.submit onclick: 'validateform(event)' %>
   </div>

@@ -1,7 +1,7 @@
-.noline{
-  text-decoration: none;
-}
-
 .linethrough {
   text-decoration: line-through;
+}
+
+.recipe-checkbox:checked + .label-for-check {
+  font-weight: bold;
 }
