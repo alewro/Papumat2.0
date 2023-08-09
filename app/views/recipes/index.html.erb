@@ -1,13 +1,11 @@
-<h1>Recipes</h1>
-<div class="container mt-3 mb-5">
-  <% @recipe_categories.each do |category| %>
-    <h3><%= category.name %></h3>
-    <%= render 'recipes/recipes', id: category.id %>
-  <% end %>
+<div class="container mt-2">
+  <h1>Recipes</h1>
+  <div class="container mt-3 mb-5">
+    <% @recipe_categories.each do |category| %>
+      <h4 class="text-center border border-dark border-2 rounded-pill bg-dark text-light"><%= category.name %></h4>
+      <%= render 'recipes/recipes', id: category.id %>
+    <% end %>
 
-  <%= link_to "New recipe", new_recipe_path, class:"btn btn-dark", style:"position: fixed; bottom: 40px; right: 2px;" %>
+    <%= link_to "New recipe", new_recipe_path, class:"btn btn-dark", style:"position: fixed; bottom: 40px; right: 2px;" %>
+  </div>
 </div>
-
-
-
-

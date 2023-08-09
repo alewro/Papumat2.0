@@ -3,30 +3,27 @@
   nested_form_wrapper_selector_value: '.nested-form-wrapper'
 }) do |f| %>
   <% if recipe.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
-
-      <ul>
-        <% recipe.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert"">
+      <% recipe.errors.each do |error| %>
+        <div class="bi bi-exclamation-triangle-fill">
+          <%= error.full_message %>
+        </div>
+      <% end %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :name, style: "display: block" %>
-    <%= f.text_field :name %>
+  <div class="field mb-3">
+    <%= f.text_field :name, placeholder:"Recipe name", class:"form-control" %>
   </div>
 
-  <div>
-    <%= f.label :description, style: "display: block" %>
-    <%= f.text_area :description %>
+  <div class="field mb-3">
+    <%= f.text_area :description, placeholder:"Recipe description", class:"form-control", style:"height: 200px;"  %>
   </div>
 
-  <div>
-    <%= f.label :recipe_category, style: "display: block" %>
-    <%= f.select :recipe_category_id, options_for_select(@recipe_categories.collect { |cat| [cat.name, cat.id] }) %>
+  <div class="form-floating mb-3">
+    <%= f.select :recipe_category_id, options_for_select(@recipe_categories.collect { |cat| [cat.name, cat.id] }), {}, {class:"form-select"} %>
+    <%= f.label :recipe_category %>
   </div>
 
   <template data-nested-form-target="template">
@@ -39,10 +36,10 @@
   <% end %>
 <div data-nested-form-target="target"></div>
 
-  <button type="button" data-action="nested-form#add">+</button>
+  <button type="button" data-action="nested-form#add" class="btn btn-outline-dark bi bi-plus-lg"></button>
 
   <div>
-    <%= f.submit %>
+    <%= f.submit class:"btn btn-dark mt-2" %>
   </div>
 
 <% end %>

@@ -1,14 +1,14 @@
-  <% @recipes.each do |recipe| %>
+<% @recipes.each do |recipe| %>
   <% if recipe.recipe_category_id == id %>
    
     <div class="d-flex justify-content-between">
       <div class="">
-        <%= link_to recipe.name, recipe %>
+        <%= link_to recipe.name, recipe, class:"btn text-start" %>
       </div>
       <div class="">
-        <%= link_to "Edit", edit_recipe_path(recipe), class:"btn" %>
+        <%= link_to '', edit_recipe_path(recipe), class:"btn bi bi-pencil" %>
       </div>
     </div>
    <% end %>
 
-  <% end %>
+<% end %>

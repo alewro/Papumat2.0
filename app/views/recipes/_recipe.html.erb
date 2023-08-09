@@ -1,20 +1,22 @@
-<div id="<%= dom_id recipe %>">
+<div id="<%= dom_id recipe %>" class="container mt-3">
 
-  <p>
-    <%= recipe.recipe_category.name %>
-  </p>
+  <h3><%= recipe.name %></h3>
+  <h6 class="mb-5"><%= recipe.recipe_category.name %></h6>
   
-  <p>
-    <%= recipe.name %>
-  </p>
+  <p class="mb-5"><%= recipe.description %></p>
 
-  <p>
-    <%= recipe.description %>
-  </p>
-
+  <h6 class="text-center">Produkty</h6>
   <% recipe.products.each do |product| %>
-    <%= product.name %>
-    <%= product.quantity%>
+    <div class="row d-flex justify-content-between mb-2">
+      <div class="col-8 border border-dark p-1"><%= product.name %></div>
+      <div class="col-3 border border-dark p-1 text-center">
+        <% if product.quantity % 1 == 0 %>
+          <%= product.quantity.to_i%>
+        <% else %>
+          <%= product.quantity%>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 
 </div>

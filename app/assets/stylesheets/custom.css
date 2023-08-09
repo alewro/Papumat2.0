@@ -2,6 +2,19 @@
   text-decoration: line-through;
 }
 
+/*Change recipe label when checked in meal plan form*/
 .recipe-checkbox:checked + .label-for-check {
   font-weight: bold;
+}
+
+/* Delete arrows from number field in forms*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
