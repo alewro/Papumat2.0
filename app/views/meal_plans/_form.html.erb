@@ -34,6 +34,31 @@
       const startDate = document.getElementById("start-date").value;
       const endDate = document.getElementById("end-date").value;
       const sub = (Date.parse(endDate)- Date.parse(startDate))/(3600*24*1000);
+
+      const inputSalty = document.querySelectorAll('.SaltyBreakfast')
+      let countSalty=0
+      inputSalty.forEach(checkbox=>{
+        if(checkbox.checked) countSalty+=1
+      });
+
+      const inputLunch = document.querySelectorAll('.Lunch')
+      let countLunch=0
+      inputLunch.forEach(checkbox=>{
+        if(checkbox.checked) countLunch+=1
+      });
+
+      const inputSweet = document.querySelectorAll('.SweetBreakfast')
+      let countSweet=0
+      inputSweet.forEach(checkbox=>{
+        if(checkbox.checked) countSweet+=1
+      });
+
+      const inputOneDick = document.querySelectorAll('.OneDick')
+      let countOneDick=0
+      inputOneDick.forEach(checkbox=>{
+        if(checkbox.checked) countOneDick+=1
+      });
+
       if(sub < 0){
         return;
       };
@@ -42,9 +67,11 @@
         return;
       };
 
-      if(confirm(`You have ${sub} time`) == false) {
+      if(sub!=countSweet || sub!=countLunch || sub!=countOneDick || sub!=countSalty){
+        if(confirm(`You have ${sub} days selected and ${countSweet} sweet recipes, ${countLunch} lunch recipes, ${countOneDick} oneDick recipes and ${countSalty} salty recipes. Do you want to save anyway?`) == false) {
         e.preventDefault();
-      }
+        }
+      };
     }
   </script>
   <div>
