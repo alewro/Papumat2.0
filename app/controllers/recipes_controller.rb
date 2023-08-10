@@ -31,10 +31,7 @@ class RecipesController < ApplicationController
         @recipe.products.each do |product|
           @all_product = AllProduct.find_by(name: product.name)
           if @all_product.nil?
-            AllProduct.create(name: product.name, category: ProductCategory.find_by(id: product.product_category_id).name)
-          else
-            @category = ProductCategory.find_by(name: @all_product.category)
-            product.update(product_category_id: @category.id )
+            AllProduct.create(name: product.name, category: "New")
           end
         end
         format.html { redirect_to recipes_path, notice:"Recipehas beem created successfully" }
@@ -53,10 +50,7 @@ class RecipesController < ApplicationController
         @recipe.products.each do |product|
           @all_product = AllProduct.find_by(name: product.name)
           if @all_product.nil?
-            AllProduct.create(name: product.name, category: ProductCategory.find_by(id: product.product_category_id).name)
-          else
-            @category = ProductCategory.find_by(name: @all_product.category)
-            product.update(product_category_id: @category.id )
+            AllProduct.create(name: product.name, category: "New")
           end
         end
         format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated." }
@@ -98,7 +92,7 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :recipe_category_id, products_attributes: [:id, :name, :quantity, :product_category_id, :_destroy])
+      params.require(:recipe).permit(:name, :description, :recipe_category_id, products_attributes: [:id, :name, :quantity, :_destroy])
     end
 
     def set_user

@@ -37,12 +37,9 @@ class MealPlansController < ApplicationController
         @meal_plan.recipes.each do |recipe|
           recipe.products.each do |product|
             @all_product = AllProduct.find_by(name: product.name)
-            if @all_product.category != ProductCategory.find_by(id: product.product_category_id).name
-              product.update(product_category_id: ProductCategory.find_by(name: @all_product.category).id)
-            end
             @shopping_list = ShoppingList.create(product_name: product.name,
                                 product_quantity: product.quantity,
-                                product_category: product.product_category.name,
+                                product_category: @all_product.category,
                                 is_bought: false)
             @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name)
               if @shopping_list_in_db.count > 1
