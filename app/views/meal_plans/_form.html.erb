@@ -1,31 +1,36 @@
 <%= form_with(model: meal_plan, html:{:id=>'my-form'}) do |form| %>
   <% if meal_plan.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(meal_plan.errors.count, "error") %> prohibited this meal_plan from being saved:</h2>
-
-      <ul>
-        <% meal_plan.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert"">
+      <% meal_plan.errors.each do |error| %>
+        <div class="bi bi-exclamation-triangle-fill">
+          <%= error.full_message %>
+        </div>
+      <% end %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date, value: Date.today, id:"start-date" %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date, value: Date.today + 7, id:"end-date" %>
+  <div class="row">
+    <div class="col-6">
+      <%= form.label :start_date, style: "display: block" %>
+      <%= form.date_field :start_date, value: Date.today, id:"start-date"  %>
+    </div>
+    <div class="col-6">
+      <%= form.label :end_date, style: "display: block" %>
+      <%= form.date_field :end_date, value: Date.today + 7, id:"end-date" 
+      %>
+    </div>
   </div>
 
   <% RecipeCategory.all.each do |label| %>
-    <%= label.name %>
+    <div class="text-center border border-dark border-2 rounded-pill bg-dark text-light mt-3 mb-2">
+      <%= label.name %>
+    </div>
     <div>
       <%= form.collection_check_boxes :recipe_ids, Recipe.where(recipe_category_id: label.id), :id, :name do |r| %>
-          <%= r.check_box(class:"recipe-checkbox", :style => 'visibility: hidden', "data-category": "#{label.name}") %><%= r.label(class:"label-for-check") %>
+        <div class="mb-2 d-flex justify-content-start">
+          <%= r.check_box(class:"recipe-checkbox", :style => 'visibility: hidden', "data-category": "#{label.name}") %><%= r.label(class:"label-for-check form-check-label") %>
+        </div>
       <% end %>
     </div>
   <% end %>
@@ -71,6 +76,6 @@
   </script>
 
   <div>
-    <%= form.submit onclick: 'validateform(event)' %>
+    <%= form.submit onclick: 'validateform(event)', class:"btn btn-dark mt-2"%>
   </div>
 <% end %>

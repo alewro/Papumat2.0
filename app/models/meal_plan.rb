@@ -25,7 +25,7 @@ class MealPlan < ApplicationRecord
 
   def collection
     if recipe_ids.empty?
-      errors.add(:recipe_ids, "must be") 
+      errors.add(:you, "have to choose at least one recipe") 
     end    
   end
 end

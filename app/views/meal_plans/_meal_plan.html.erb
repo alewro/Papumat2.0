@@ -1,18 +1,24 @@
 <div id="<%= dom_id meal_plan %>">
-  <%= meal_plan.start_date.strftime('%d-%m') %> - <%= meal_plan.end_date.strftime('%d-%m') %>
+  <%= meal_plan.start_date.strftime('%d.%m') %> - <%= meal_plan.end_date.strftime('%d.%m') %>
   <br/>
 
   <% @category.each do |category|%>
-    <h4><%= category.name %></h4>
+    <div class="text-center border border-dark border-2 rounded-pill bg-dark text-light mt-3 mb-2">
+      <%= category.name %>
+    </div>
     <% @meal_plan.recipes.each do |recipe| %>
       <% if category.id == recipe.recipe_category_id %>
         <div class="d-flex justify-content-between">
-          <div class="<%= "linethrough" if RecipeChecking.where(recipe_id: recipe.id, meal_plan_id: @meal_plan.id).first.is_done == true %>">
-            <%= recipe.name %>
-          </div>
           <div>
-            <%= link_to "Edit", edit_recipe_path(recipe), class:"btn" %>
-            <%= button_to "Done", change_is_done_path, params: {meal_plan_id: @meal_plan.id, recipe_id: recipe.id}, method: :change_is_done, class:"btn" %>
+            <% if RecipeChecking.where(recipe_id: recipe.id, meal_plan_id: @meal_plan.id).first.is_done == true %>
+              <%= link_to recipe.name, recipe, class:"btn text-start text-decoration-line-through fw-lighter" %>
+            <% else %>
+              <%= link_to recipe.name, recipe, class:"btn text-start" %>
+            <% end %>
+          </div>
+          <div class="btn-group">
+            <%= link_to "", edit_recipe_path(recipe), class:"btn bi bi-pencil" %>
+            <%= button_to "", change_is_done_path, params: {meal_plan_id: @meal_plan.id, recipe_id: recipe.id}, method: :change_is_done, class:"btn bi bi-check-circle" %>
           </div>
         </div>
       <% end %>
