@@ -4,7 +4,7 @@
     <%= render "form", shopping_list: @shopping_list%>
   </div>
   <div id="shopping_lists" class="mb-5">
-    <% ShoppingList.all.order(:product_category).each do |shopping_list| %>
+    <% ShoppingList.all.order(product_category: :asc, product_name: :asc).each do |shopping_list| %>
       <% if shopping_list.is_bought == false %>
         <%= render shopping_list, class_name: "btn" %>
       <% end %>
