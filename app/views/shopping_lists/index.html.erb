@@ -1,14 +1,9 @@
-
-<h1>Shopping list</h1>
-<div class="btn-group">
-  <%= button_to "Clear", shopping_lists_path, method: :delete, class:"btn" %>
-  <%= link_to "Add product", "#", id:"formShowButton", class:"btn", onclick:"showForm()" %>
-</div>
-<div id="myForm" class="myForm">
-  <%= render "form", shopping_list: @shopping_list%>
-</div>
-<div class="container">
-  <div id="shopping_lists">
+<div class="container mt-2">
+  <h1>Shopping list</h1>
+  <div id="myForm" class="myForm">
+    <%= render "form", shopping_list: @shopping_list%>
+  </div>
+  <div id="shopping_lists" class="mb-5">
     <% ShoppingList.all.order(:product_category).each do |shopping_list| %>
       <% if shopping_list.is_bought == false %>
         <%= render shopping_list, class_name: "btn" %>
