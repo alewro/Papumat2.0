@@ -5,7 +5,5 @@
       <h4 class="text-center border border-dark border-2 rounded-pill bg-dark text-light"><%= category.name %></h4>
       <%= render 'recipes/recipes', id: category.id %>
     <% end %>
-
-    <%= link_to "New recipe", new_recipe_path, class:"btn btn-dark", style:"position: fixed; bottom: 40px; right: 2px;" %>
   </div>
 </div>

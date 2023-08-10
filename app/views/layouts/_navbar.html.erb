@@ -1,6 +1,11 @@
 <nav class="navbar navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
     <span class="navbar-brand mb-0 h1">Papumat 2.0</span>
-    <%= button_to "", destroy_user_session_path, method: :delete, class:"btn bi bi-box-arrow-right text-light" if current_user %>
+    <div class="d-flex justify-content-end">
+      <%= link_to "", new_recipe_path, class:"btn bi bi-plus-lg text-light" if current_page?(recipes_path) %>
+      <%= link_to "", new_meal_plan_path, class:"btn bi bi-plus-lg text-light" if current_page?(meal_plans_path) %>
+      <%= button_to "", destroy_user_session_path, method: :delete, class:"btn bi bi-box-arrow-right text-light" if current_user %>
+
+    </div>
   </div>
 </nav>

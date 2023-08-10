@@ -1,22 +1,20 @@
 <div class="container mt-2">
-<h1>Meal plans</h1>
+  <h1>Meal plans</h1>
 
-<div class="container mt-3 mb-5">
-  <% @meal_plans.each do |meal_plan| %>
-    <div class="d-flex justify-content-between">
-      <div>
-        <% if meal_plan.start_date <= Date.today && Date.today <= meal_plan.end_date%>
-          <%= link_to "#{meal_plan.start_date.strftime('%d.%m')}-#{meal_plan.end_date.strftime('%d.%m')}", meal_plan, class:"btn text-start fw-bold"%>
-        <% else %>
-          <%= link_to "#{meal_plan.start_date.strftime('%d.%m')}-#{meal_plan.end_date.strftime('%d.%m')}", meal_plan, class:"btn text-start"%>
-        <% end %>
+  <div class="container mt-3 mb-5">
+    <% @meal_plans.each do |meal_plan| %>
+      <div class="d-flex justify-content-between">
+        <div>
+          <% if meal_plan.start_date <= Date.today && Date.today <= meal_plan.end_date%>
+            <%= link_to "#{meal_plan.start_date.strftime('%d.%m')}-#{meal_plan.end_date.strftime('%d.%m')}", meal_plan, class:"btn text-start fw-bold"%>
+          <% else %>
+            <%= link_to "#{meal_plan.start_date.strftime('%d.%m')}-#{meal_plan.end_date.strftime('%d.%m')}", meal_plan, class:"btn text-start"%>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to "", edit_meal_plan_path(meal_plan), class:"btn bi bi-pencil" %>
+        </div>
       </div>
-      <div>
-        <%= link_to "", edit_meal_plan_path(meal_plan), class:"btn bi bi-pencil" %>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-<%= link_to "New meal plan", new_meal_plan_path, class:"btn btn-dark", style:"position: fixed; bottom: 40px; right: 2px;" %>
+    <% end %>
+  </div>
 </div>
