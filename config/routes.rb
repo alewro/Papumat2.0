@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :meal_plans
   resources :recipe_categories
   resources :recipes
-  devise_for :users
+  devise_for :users, skip: [:registrations]
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   post 'change_is_done', to: "recipes#change_is_done"

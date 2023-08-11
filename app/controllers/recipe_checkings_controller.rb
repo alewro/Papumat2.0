@@ -48,6 +48,3 @@ class RecipeCheckingsController < ApplicationController
       params.require(:recipe_checking).permit(:meal_plan_id, :recipe_id, :is_done)
     end
 end
-
-end
-
