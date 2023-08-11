@@ -27,13 +27,16 @@ class MealPlansController < ApplicationController
     @meal_plan = MealPlan.new(meal_plan_params)
     respond_to do |format|
       if @meal_plan.save
+        #Delete from shopping list all records that are already bought
         @bought_products = ShoppingList.where(is_bought: true)
         @bought_products.delete_all
+
         @meal_plan.recipe_ids.each do |recipe_checking|
           RecipeChecking.create(meal_plan_id: @meal_plan.id,
                                 recipe_id: recipe_checking,
                                 is_done: false)
         end
+        #Create shopping list with all products that are present in meal plan recipes
         @meal_plan.recipes.each do |recipe|
           recipe.products.each do |product|
             @all_product = AllProduct.find_by(name: product.name)
@@ -41,6 +44,7 @@ class MealPlansController < ApplicationController
                                 product_quantity: product.quantity,
                                 product_category: @all_product.category,
                                 is_bought: false)
+            #Update product quantity if record alredy exist in shopping list
             @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name)
               if @shopping_list_in_db.count > 1
                 @shopping_list_in_db.update(product_quantity: @shopping_list_in_db.first.product_quantity + @shopping_list.product_quantity)

@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
         @recipe.products.each do |product|
           @all_product = AllProduct.find_by(name: product.name)
           if @all_product.nil?
-            AllProduct.create(name: product.name, category: "New")
+            AllProduct.create(name: product.name, category: "1new")
           end
         end
         format.html { redirect_to recipes_path, notice:"Recipehas beem created successfully" }
@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
         @recipe.products.each do |product|
           @all_product = AllProduct.find_by(name: product.name)
           if @all_product.nil?
-            AllProduct.create(name: product.name, category: "New")
+            AllProduct.create(name: product.name, category: "1new")
           end
         end
         format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully updated." }
@@ -100,7 +100,7 @@ class RecipesController < ApplicationController
     end
 
     def set_recipe_categories
-      @recipe_categories = RecipeCategory.all.order(:name)
+      @recipe_categories = RecipeCategory.all.order(:id)
     end
 
     def set_product_categories

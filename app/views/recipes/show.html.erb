@@ -1,11 +1,7 @@
 <div class="container">
 
   <%= render @recipe %>
-
-  <div class="btn-group mt-4">
-    <%= link_to "Edit", edit_recipe_path(@recipe), class:"btn btn-outline-dark" %>
-    <%= button_to "Delete", @recipe, method: :delete, class:"btn btn-outline-dark" %>
-  </div>
+  
   <div class="mt-3 mb-5">
     <%= link_to "Back to recipes", recipes_path, class:"btn btn-dark" %>
   </div>

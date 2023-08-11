@@ -30,16 +30,20 @@ class ShoppingListsController < ApplicationController
     @product = AllProduct.where(name: @shopping_list.product_name)
     respond_to do |format|
       if @shopping_list.save
+        #delete all records which are bought from shopping list
         ShoppingList.where(is_bought: true, product_name: @shopping_list.product_name).delete_all
+        #Update category of shopping list record if product already exist and has different category in AllProducts table
         if @product&.exists?
           @shopping_list.update(product_category: @product.first.category)
         else
-          AllProduct.create(name: @shopping_list.product_name, category: "New")
+          AllProduct.create(name: @shopping_list.product_name, category: "1new")
         end
+        #Update record quantity if already exist in shopping list
         if @shopping_list_in_db.count > 1
           @shopping_list.update(product_quantity: @shopping_list_in_db.first.product_quantity + @shopping_list.product_quantity)
           @shopping_list_in_db.first.destroy
         end
+        #Delete records with 0 quantity
         if @shopping_list.product_quantity <= 0
           @shopping_list.destroy
         end

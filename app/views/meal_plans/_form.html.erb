@@ -13,11 +13,11 @@
   <div class="row">
     <div class="col-6">
       <%= form.label :start_date, style: "display: block" %>
-      <%= form.date_field :start_date, value: Date.today, id:"start-date"  %>
+      <%= form.date_field :start_date, value: Date.today, id:"start-date", class:"form-control" %>
     </div>
     <div class="col-6">
       <%= form.label :end_date, style: "display: block" %>
-      <%= form.date_field :end_date, value: Date.today + 7, id:"end-date" 
+      <%= form.date_field :end_date, value: Date.today + 7, id:"end-date", class:"form-control" 
       %>
     </div>
   </div>

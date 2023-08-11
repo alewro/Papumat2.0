@@ -17,7 +17,6 @@
             <% end %>
           </div>
           <div class="btn-group">
-            <%= link_to "", edit_recipe_path(recipe), class:"btn bi bi-pencil" %>
             <%= button_to "", change_is_done_path, params: {meal_plan_id: @meal_plan.id, recipe_id: recipe.id}, method: :change_is_done, class:"btn bi bi-check-circle" %>
           </div>
         </div>

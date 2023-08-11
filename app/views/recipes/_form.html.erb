@@ -22,7 +22,7 @@
   </div>
 
   <div class="form-floating mb-3">
-    <%= f.select :recipe_category_id, options_for_select(@recipe_categories.collect { |cat| [cat.name, cat.id] }), {}, {class:"form-select"} %>
+    <%= f.select :recipe_category_id, options_for_select(@recipe_categories.collect { |cat| [cat.name, cat.id] }, recipe.recipe_category_id), {}, {class:"form-select"} %>
     <%= f.label :recipe_category %>
   </div>
 

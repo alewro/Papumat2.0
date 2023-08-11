@@ -1,6 +1,14 @@
 <div id="<%= dom_id recipe %>" class="container mt-3">
-
+  <div class="row">
+  <div class="col-8">
   <h3><%= recipe.name %></h3>
+  </div>
+  <div class="btn-group col-4">
+    <%= link_to "", edit_recipe_path(@recipe), class:"btn bi bi-pencil" %>
+    <%= button_to "", @recipe, method: :delete, class:"btn bi bi-trash" %>
+  </div>
+
+  </div>
   <h6 class="mb-5"><%= recipe.recipe_category.name %></h6>
   
   <p class="mb-5"><%= recipe.description %></p>

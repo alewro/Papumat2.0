@@ -1,10 +1,12 @@
-<h1>Editing meal plan</h1>
+<div class="container">
+  <h1>Editing meal plan</h1>
 
-<%= render "form", meal_plan: @meal_plan %>
+  <%= render "form", meal_plan: @meal_plan %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this meal plan", @meal_plan %> |
-  <%= link_to "Back to meal plans", meal_plans_path %>
+  <div>
+    <%= link_to "Show this meal plan", @meal_plan %> |
+    <%= link_to "Back to meal plans", meal_plans_path %>
+  </div>
 </div>
