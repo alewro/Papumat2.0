@@ -17,3 +17,6 @@ Clone repo with `gh repo clone alewro/Papumat2.0`\
 Enter folder with `cd Papumat2.0`\
 Migrate data base with `rails db:migrate`\
 Create default product and recipe categories by enter `rails db:seed`
+
+## Customize
+You can add your recipe and product categories in rails console or you can also edit seed.rb file. However when you add or change default product categories you must add new file custom_category_name.png in app/assets/images to prevent error.
