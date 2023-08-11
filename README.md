@@ -1,24 +1,19 @@
-# README
+# Papumat 2.0
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About app
 
-Things you may want to cover:
+Papumat 2.0 is an app for managing recipes, creating meal plans and shopping list.
 
-* Ruby version
+### Add your recipes
+Add ***name***, ***description***, ***recipe category*** and ***products*** that are needed to make that recipe.
+### Create MealPlan
+Select ***start date*** and ***end date*** then choose ***recipes*** from the list. If number of recipes is not equal to numbers of selected days you will have to confirm your MealPlan before save.
+### Shopping List
+***Shopping list*** is automaticly created, based on products in recipes, after MealPlan is saved.\
+You can also add your custom products to shopping list.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Start
+Clone repo with `gh repo clone alewro/Papumat2.0`\
+Enter folder with `cd Papumat2.0`\
+Migrate data base with `rails db:migrate`\
+Create default product and recipe categories by enter `rails db:seed`
