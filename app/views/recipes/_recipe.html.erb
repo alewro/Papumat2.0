@@ -11,7 +11,7 @@
   </div>
   <h6 class="mb-5"><%= recipe.recipe_category.name %></h6>
   
-  <p class="mb-5"><%= recipe.description %></p>
+  <p class="mb-5"><%= simple_format(recipe.description) %></p>
 
   <h6 class="text-center">Produkty</h6>
   <% recipe.products.each do |product| %>
