@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:registrations]
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get "/service-worker.js", to: "service_worker#service_worker"
+  get "/manifest.json", to: "service_worker#manifest"
+
   post 'change_is_done', to: "recipes#change_is_done"
   post 'change_is_bought', to: "shopping_lists#change_is_bought"
 
