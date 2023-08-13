@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-start ">
     <div>
       <%= link_to edit_shopping_list_path(shopping_list) do %>
-        <%= image_tag "#{shopping_list.product_category}.png", class:"icons pt-2" %>
+        <%= image_tag "#{ProductCategory.find_by(id: shopping_list.product_category_id).name}.png", class:"icons pt-2" %>
       <% end %>
     </div>
     <div>

@@ -1,7 +1,7 @@
 function validateform(e){
   const startDate = document.getElementById("start-date").value;
   const endDate = document.getElementById("end-date").value;
-  const sub = (Date.parse(endDate)- Date.parse(startDate))/(3600*24*1000);
+  const sub = (Date.parse(endDate)- Date.parse(startDate))/(3600*24*1000)+1;
 
   const recipeCheckboxes = [...document.querySelectorAll('.recipe-checkbox')];
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_10_080448) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_13_174344) do
   create_table "all_products", force: :cascade do |t|
     t.string "name"
     t.string "category"
@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_080448) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "order_hint"
   end
 
   create_table "products", force: :cascade do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_080448) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "order_hint"
   end
 
   create_table "recipe_checkings", force: :cascade do |t|
@@ -77,10 +79,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_080448) do
   create_table "shopping_lists", force: :cascade do |t|
     t.string "product_name"
     t.float "product_quantity"
-    t.string "product_category"
     t.boolean "is_bought"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_category_id", default: 1, null: false
+    t.float "order_hint"
+    t.index ["product_category_id"], name: "index_shopping_lists_on_product_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,4 +101,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_10_080448) do
 
   add_foreign_key "products", "recipes"
   add_foreign_key "recipes", "recipe_categories"
+  add_foreign_key "shopping_lists", "product_categories"
 end

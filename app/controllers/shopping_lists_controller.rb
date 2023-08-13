@@ -34,9 +34,9 @@ class ShoppingListsController < ApplicationController
         ShoppingList.where(is_bought: true, product_name: @shopping_list.product_name).delete_all
         #Update category of shopping list record if product already exist and has different category in AllProducts table
         if @product&.exists?
-          @shopping_list.update(product_category: @product.first.category)
+          @shopping_list.update(product_category_id: ProductCategory.find_by(name: @product.first.category).id, order_hint: ProductCategory.find_by(name: @product.first.category).order_hint )
         else
-          AllProduct.create(name: @shopping_list.product_name, category: "1new")
+          AllProduct.create(name: @shopping_list.product_name, category: "new")
         end
         #Update record quantity if already exist in shopping list
         if @shopping_list_in_db.count > 1
@@ -60,6 +60,7 @@ class ShoppingListsController < ApplicationController
   def update
     respond_to do |format|
       if @shopping_list.update(shopping_list_params)
+        @shopping_list.update(order_hint: ProductCategory.find_by(id: @shopping_list.product_category_id).order_hint)
         AllProduct.where(name: @shopping_list.product_name).update(category: @shopping_list.product_category)
         format.html { redirect_to shopping_lists_path }
         format.json { render :show, status: :ok, location: @shopping_list }
@@ -104,6 +105,6 @@ class ShoppingListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shopping_list_params
-      params.require(:shopping_list).permit(:product_name, :product_quantity, :product_category, :is_bought)
+      params.require(:shopping_list).permit(:product_name, :product_quantity, :product_category_id, :is_bought, :order_hint)
     end
 end

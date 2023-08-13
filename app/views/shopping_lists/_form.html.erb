@@ -3,7 +3,10 @@
     <%= form.hidden_field :is_bought, value: false %>
   </div>
   <div>
-    <%= form.hidden_field :product_category, value: "1new" %>
+    <%= form.hidden_field :product_category_id, value: 1 %>
+  </div>
+    <div>
+    <%= form.hidden_field :order_hint, value: 0 %>
   </div>
 
   <div class="row">

@@ -42,8 +42,9 @@ class MealPlansController < ApplicationController
             @all_product = AllProduct.find_by(name: product.name)
             @shopping_list = ShoppingList.create(product_name: product.name,
                                 product_quantity: product.quantity,
-                                product_category: @all_product.category,
-                                is_bought: false)
+                                product_category_id: ProductCategory.find_by(name: @all_product.category).id,
+                                is_bought: false,
+                                order_hint: ProductCategory.find_by(name: @all_product.category).order_hint)
             #Update product quantity if record alredy exist in shopping list
             @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name)
               if @shopping_list_in_db.count > 1
