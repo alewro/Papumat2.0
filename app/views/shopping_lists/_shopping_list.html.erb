@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-between border-bottom">
   <div class="d-flex justify-content-start ">
-    <div>
+    <div data-turbo="false">
       <%= link_to edit_shopping_list_path(shopping_list) do %>
         <%= image_tag "#{ProductCategory.find_by(id: shopping_list.product_category_id).name}.png", class:"icons pt-2" %>
       <% end %>
     </div>
     <div>
-      <%= button_to shopping_list.product_name, change_is_bought_path, params: {id: shopping_list.id}, method: :change_is_bought_path, class: class_name %>
+      <%= link_to shopping_list.product_name, change_is_bought_path(id: shopping_list.id), class: class_name %>
     </div>
   </div> 
   <div class="pt-2">

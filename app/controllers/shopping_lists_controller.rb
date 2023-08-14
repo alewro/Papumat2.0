@@ -88,13 +88,10 @@ class ShoppingListsController < ApplicationController
 
   def change_is_bought
     @shopping_list = ShoppingList.find_by(id: params[:id])
-    if @shopping_list.is_bought == true
-      @shopping_list.update(is_bought: false)
-      redirect_to shopping_lists_path
-    elsif @shopping_list.is_bought == false
-      @shopping_list.update(is_bought: true)
-      redirect_to shopping_lists_path
-    end
+    @shopping_list.toggle!(:is_bought)
+
+    render turbo_stream:
+      turbo_stream.update("shopping_list", partial: "shopping_lists/list")
   end
 
   private

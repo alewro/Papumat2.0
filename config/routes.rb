@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "/manifest.json", to: "service_worker#manifest"
 
   post 'change_is_done', to: "recipes#change_is_done"
-  post 'change_is_bought', to: "shopping_lists#change_is_bought"
+  get 'change_is_bought/:id', to: "shopping_lists#change_is_bought", as:"change_is_bought"
 
   delete 'shopping_lists', to: "shopping_lists#all_delete"
   # Defines the root path route ("/")
