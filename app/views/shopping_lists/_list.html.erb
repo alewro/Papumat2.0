@@ -6,9 +6,9 @@
   <div id="shopping_lists" class="mb-5 fs-4">
     <% ShoppingList.all.order(is_bought: :asc, order_hint: :asc, product_name: :asc).each do |shopping_list| %>
       <% if shopping_list.is_bought %>
-        <%= render shopping_list, class_name: "btn text-decoration-line-through fs-4" %>
+        <%= render shopping_list, class_name: "btn text-start form-control text-decoration-line-through fs-4" %>
       <% else %>
-       <%= render shopping_list, class_name: "btn fs-4" %>
+       <%= render shopping_list, class_name: "btn form-control text-start fs-4" %>
       <% end %>
     <% end %>
   </div>

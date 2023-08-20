@@ -1,19 +1,18 @@
-<div class="d-flex justify-content-between border-bottom">
-  <div class="d-flex justify-content-start ">
-    <div data-turbo="false">
-      <%= link_to edit_shopping_list_path(shopping_list) do %>
-        <%= image_tag "#{ProductCategory.find_by(id: shopping_list.product_category_id).name}.png", class:"icons pt-2" %>
-      <% end %>
-    </div>
-    <div>
-      <%= link_to shopping_list.product_name, change_is_bought_path(id: shopping_list.id), class: class_name %>
-    </div>
-  </div> 
-  <div class="pt-2">
+<div class="row border-bottom">
+  <div data-turbo="false" class="col-1 text-cente">
+    <%= link_to edit_shopping_list_path(shopping_list) do %>
+      <%= image_tag "#{ProductCategory.find_by(id: shopping_list.product_category_id).name}.png", class:"icons pt-2" %>
+    <% end %>
+  </div>
+  <div class="col-10">
+    <%= link_to shopping_list.product_name, change_is_bought_path(id: shopping_list.id), class: class_name %>
+  </div>
+
+  <div class="pt-2 col-1 text-end ">
     <% if shopping_list.product_quantity % 1 == 0 %>
       <%= shopping_list.product_quantity.to_i %>
     <% else %>
       <%= shopping_list.product_quantity%>
     <% end %>
   </div>
-</div>
+</div> 
