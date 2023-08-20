@@ -10,7 +10,7 @@ class MealPlansController < ApplicationController
 
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
-    @category = RecipeCategory.all
+    @category = RecipeCategory.all.order(:order_hint)
   end
 
   # GET /meal_plans/new
