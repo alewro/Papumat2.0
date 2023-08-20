@@ -2,7 +2,7 @@
   <%= meal_plan.start_date.strftime('%d.%m') %> - <%= meal_plan.end_date.strftime('%d.%m') %>
   <br/>
 
-  <% @category.each do |category|%>
+  <% RecipeCategory.all.order(:order_hint).each do |category|%>
     <div class="text-center border border-dark border-2 rounded-pill bg-dark text-light mt-3 mb-2">
       <%= category.name %>
     </div>
@@ -17,7 +17,7 @@
             <% end %>
           </div>
           <div class="btn-group">
-            <%= button_to "", change_is_done_path, params: {meal_plan_id: @meal_plan.id, recipe_id: recipe.id}, method: :change_is_done, class:"btn bi bi-check-circle" %>
+            <%= link_to "", change_is_done_path(meal_plan_id: @meal_plan.id, recipe_id: recipe.id), class:"btn bi bi-check-circle" %>
           </div>
         </div>
       <% end %>

@@ -1,6 +1,9 @@
 <div class="container mt-3 mb-5">
+  <%= turbo_frame_tag "meal_plan" do %>
     <%= render @meal_plan %>
+  <% end %>
   <div>
     <%= link_to "Back to meal plans", meal_plans_path, class:"btn btn-dark mt-2" %>
   </div>
 </div>
+

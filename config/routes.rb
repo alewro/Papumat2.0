@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get "/service-worker.js", to: "service_worker#service_worker"
   get "/manifest.json", to: "service_worker#manifest"
 
-  post 'change_is_done', to: "recipes#change_is_done"
+  get 'change_is_done', to: "recipes#change_is_done", as:"change_is_done"
   get 'change_is_bought/:id', to: "shopping_lists#change_is_bought", as:"change_is_bought"
 
   delete 'shopping_lists', to: "shopping_lists#all_delete"

@@ -75,13 +75,10 @@ class RecipesController < ApplicationController
   def change_is_done
     @recipe_checking = RecipeChecking.where(meal_plan_id: params[:meal_plan_id], recipe_id: params[:recipe_id]).first
     @meal_plan = MealPlan.find(params[:meal_plan_id])
-    if @recipe_checking.is_done == true
-      @recipe_checking.update(is_done: false)
-      redirect_to meal_plan_path(@meal_plan)
-    elsif @recipe_checking.is_done == false
-      @recipe_checking.update(is_done: true)
-      redirect_to meal_plan_path(@meal_plan)
-    end
+    @recipe_checking.toggle!(:is_done)
+
+    render turbo_stream:
+      turbo_stream.update("meal_plan", partial: "meal_plans/meal_plan", locals: {meal_plan: @meal_plan})
   end
 
   private
