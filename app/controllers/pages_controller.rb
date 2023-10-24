@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 
   def set_roots
     if current_user
-      redirect_to recipes_path
+      redirect_to meal_plans_path
     else
       redirect_to user_session_path
     end
