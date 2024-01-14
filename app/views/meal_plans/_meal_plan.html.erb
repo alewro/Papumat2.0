@@ -7,21 +7,19 @@
       <div class="text-center border border-dark border-2 rounded-pill bg-dark text-light mt-3 mb-2">
         <%= category.name %>
       </div>
-      <% @meal_plan.recipes.each do |recipe| %>
-        <% if category.id == recipe.recipe_category_id %>
-          <div class="d-flex justify-content-between">
-            <div data-turbo="false">
-              <% if RecipeChecking.where(recipe_id: recipe.id, meal_plan_id: @meal_plan.id).first.is_done == true %>
-                <%= link_to recipe.name, recipe, class:"btn text-start text-decoration-line-through fw-lighter" %>
-              <% else %>
-                <%= link_to recipe.name, recipe, class:"btn text-start" %>
-              <% end %>
-            </div>
-            <div class="btn-group">
-              <%= link_to "", change_is_done_path(meal_plan_id: @meal_plan.id, recipe_id: recipe.id), class:"btn bi bi-check-circle" %>
-            </div>
+      <% @meal_plan.recipes.where(recipe_category_id: category.id).each do |recipe| %>
+        <div class="d-flex justify-content-between">
+          <div data-turbo="false">
+            <% if RecipeChecking.where(recipe_id: recipe.id, meal_plan_id: @meal_plan.id).first.is_done == true %>
+              <%= link_to recipe.name, recipe, class:"btn text-start text-decoration-line-through fw-lighter" %>
+            <% else %>
+              <%= link_to recipe.name, recipe, class:"btn text-start" %>
+            <% end %>
           </div>
-        <% end %>
+          <div class="btn-group">
+            <%= link_to "", change_is_done_path(meal_plan_id: @meal_plan.id, recipe_id: recipe.id), class:"btn bi bi-check-circle" %>
+          </div>
+        </div>
       <% end %>
     <% end %>
   <% end %>
