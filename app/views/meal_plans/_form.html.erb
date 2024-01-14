@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <% RecipeCategory.all.each do |label| %>
+  <% RecipeCategory.all.order(:order_hint).each do |label| %>
     <div class="text-center border border-dark border-2 rounded-pill bg-dark text-light mt-3 mb-2">
       <%= label.name %>
     </div>

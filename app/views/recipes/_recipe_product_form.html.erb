@@ -1,7 +1,7 @@
   <div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
 
     <%= f.text_field :name, placeholder:"Product name", class:"form-control mb-2" %>
-    <%= f.number_field :quantity, step: "0.1", placeholder: "Product quantity", class:"form-control mb-2" %>
+    <%= f.number_field :quantity, step: "0.1", value: "1.0", class:"form-control mb-2" %>
 
     <button type="button" data-action="nested-form#remove" class="btn btn-outline-dark mb-3 bi bi-trash"></button>
 

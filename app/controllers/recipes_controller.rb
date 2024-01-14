@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
             AllProduct.create(name: product.name, category: "new")
           end
         end
-        format.html { redirect_to recipes_path, notice:"Recipehas beem created successfully" }
+        format.html { redirect_to recipes_path, notice:"Recipe has been created successfully" }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
