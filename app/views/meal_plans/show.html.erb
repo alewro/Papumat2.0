@@ -1,3 +1,4 @@
+<% content_for :title, "Meal Plan  #{@meal_plan.start_date.strftime('%d.%m')}-#{@meal_plan.end_date.strftime('%d.%m')}" %>
 <div class="container mt-3 mb-5">
   <%= turbo_frame_tag "meal_plan" do %>
     <%= render @meal_plan %>
