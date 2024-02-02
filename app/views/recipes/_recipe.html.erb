@@ -5,7 +5,7 @@
   </div>
   <div class="btn-group col-4">
     <%= link_to "", edit_recipe_path(@recipe), class:"btn bi bi-pencil" %>
-    <%= button_to "", @recipe, method: :delete, class:"btn bi bi-trash" %>
+    <%= button_to "", @recipe, method: :delete, data: {turbo_confirm: "Are you sure you want to delete #{recipe.name} recipe?"}, class:"btn bi bi-trash" %>
   </div>
 
   </div>
