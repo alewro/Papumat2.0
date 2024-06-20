@@ -4,6 +4,6 @@ class ShoppingList < ApplicationRecord
   before_save :downcase_fields
 
   def downcase_fields
-    self.product_name.downcase!
+    self.product_name = product_name[0].downcase + product_name[1..-1]
  end
 end
