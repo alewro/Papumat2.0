@@ -1,6 +1,5 @@
 <% content_for :title, "Meal Plans" %>
 <div class="container mt-2">
-  <h1>Meal plans</h1>
 
   <div class="container mt-3 mb-5">
     <% @meal_plans.each do |meal_plan| %>
@@ -18,4 +17,4 @@
       </div>
     <% end %>
   </div>
-</div>
+</div><%= link_to "", new_meal_plan_path, class: "fab fab-primary bi bi-plus-lg", title: "New meal plan" %>

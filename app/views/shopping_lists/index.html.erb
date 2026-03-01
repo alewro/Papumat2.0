@@ -3,3 +3,7 @@
   <%= render "shopping_lists/list" %>
 <% end %>
 <%= javascript_include_tag "show_form" %>
+<div class="fab-group">
+  <a id="formShowButton" class="fab fab-primary bi bi-plus-lg" onclick="showForm(); return false;" href="#" title="Add item"></a>
+  <%= button_to "", shopping_lists_path, method: :delete, class: "fab fab-danger bi bi-trash", title: "Clear list", form: { class: "fab-form" } %>
+</div>

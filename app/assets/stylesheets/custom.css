@@ -24,3 +24,112 @@ input[type=number] {
   height: 30px;
   width: 22px;
 }
+
+/* Floating action buttons – frosted glass */
+.fab {
+  position: fixed;
+  right: 1.5rem;
+  z-index: 1030;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: #212529;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.fab:hover {
+  color: #212529;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.85);
+}
+.fab-primary {
+  bottom: 1.5rem;
+}
+.fab-secondary {
+  bottom: 3rem;
+  background: rgba(248, 249, 250, 0.75);
+}
+.fab-secondary:hover {
+  background: rgba(248, 249, 250, 0.9);
+}
+.fab-danger {
+  bottom: 3rem;
+  background: rgba(255, 255, 255, 0.65);
+  color: #c92a2a;
+}
+.fab-danger:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #e03131;
+}
+.fab-group .fab-secondary {
+  bottom: 3rem;
+}
+.fab-group .fab-danger {
+  bottom: 3rem;
+}
+
+.fab-form {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+.fab-form .fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 5rem;
+}
+
+/* Footer nav – floats at same level as FABs, segmented round buttons */
+.footer-nav {
+  position: fixed;
+  bottom: 1.5rem;
+
+  left: 45%;
+  transform: translateX(-50%);
+  z-index: 1030;
+}
+
+.footer-nav__segmented {
+  display: inline-flex;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 2rem;
+  padding: 0.25rem;
+  box-shadow: 0 4px 12px rgba(231, 231, 231, 0.15);
+}
+
+.footer-nav__item {
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  color: rgba(33, 37, 41, 0.85);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.footer-nav__item:hover {
+  color: #212529;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.footer-nav__item--active {
+  background-color: rgba(33, 37, 41, 0.12);
+  color: #212529;
+}
+
+.footer-nav__item--active:hover {
+  background-color: rgba(33, 37, 41, 0.18);
+  color: #212529;
+}
