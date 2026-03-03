@@ -25,9 +25,9 @@ class ShoppingListsController < ApplicationController
   # POST /shopping_lists or /shopping_lists.json
   def create
     @shopping_list = ShoppingList.new(shopping_list_params)
-    @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name.downcase.strip)
+    @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name.strip.downcase.first + @shopping_list.product_name.strip[1..-1])
     @records_quantity = @shopping_list_in_db.count
-    @product = AllProduct.where(name: @shopping_list.product_name.downcase.strip)
+    @product = AllProduct.where(name: @shopping_list.product_name.strip.downcase.first + @shopping_list.product_name.strip[1..-1])
     respond_to do |format|
       if @shopping_list.save
         #delete all records which are bought from shopping list
@@ -105,3 +105,4 @@ class ShoppingListsController < ApplicationController
       params.require(:shopping_list).permit(:product_name, :product_quantity, :product_category_id, :is_bought, :order_hint)
     end
 end
+
