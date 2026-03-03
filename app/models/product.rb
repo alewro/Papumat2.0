@@ -5,6 +5,6 @@ class Product < ApplicationRecord
   before_save :downcase_fields
 
   def downcase_fields
-    self.name = name[0].downcase + name[1..-1]
+    self.name = name.downcase.strip
  end
 end

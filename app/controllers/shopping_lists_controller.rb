@@ -25,9 +25,9 @@ class ShoppingListsController < ApplicationController
   # POST /shopping_lists or /shopping_lists.json
   def create
     @shopping_list = ShoppingList.new(shopping_list_params)
-    @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name)
+    @shopping_list_in_db = ShoppingList.where(product_name: @shopping_list.product_name.downcase.strip)
     @records_quantity = @shopping_list_in_db.count
-    @product = AllProduct.where(name: @shopping_list.product_name)
+    @product = AllProduct.where(name: @shopping_list.product_name.downcase.strip)
     respond_to do |format|
       if @shopping_list.save
         #delete all records which are bought from shopping list
@@ -61,7 +61,7 @@ class ShoppingListsController < ApplicationController
     respond_to do |format|
       if @shopping_list.update(shopping_list_params)
         @shopping_list.update(order_hint: ProductCategory.find_by(id: @shopping_list.product_category_id).order_hint)
-        AllProduct.where(name: @shopping_list.product_name).update(category: ProductCategory.find_by(id: @shopping_list.product_category_id).name)
+        AllProduct.where(name: @shopping_list.product_name.downcase.strip).update(category: ProductCategory.find_by(id: @shopping_list.product_category_id).name)
         format.html { redirect_to shopping_lists_path }
         format.json { render :show, status: :ok, location: @shopping_list }
       else
