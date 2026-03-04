@@ -61,7 +61,7 @@ class ShoppingListsController < ApplicationController
     respond_to do |format|
       if @shopping_list.update(shopping_list_params)
         @shopping_list.update(order_hint: ProductCategory.find_by(id: @shopping_list.product_category_id).order_hint)
-        AllProduct.where(name: @shopping_list.product_name.downcase.strip).update(category: ProductCategory.find_by(id: @shopping_list.product_category_id).name)
+        AllProduct.where(name: @shopping_list.product_name.strip.downcase.first + @shopping_list.product_name.strip[1..-1]).update(category: ProductCategory.find_by(id: @shopping_list.product_category_id).name)
         format.html { redirect_to shopping_lists_path }
         format.json { render :show, status: :ok, location: @shopping_list }
       else
