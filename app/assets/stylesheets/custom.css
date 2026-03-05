@@ -139,7 +139,7 @@ input[type=number] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-left: -3em;
   animation: parallax infinite;
-  animation-timeline: view();
+  animation-timeline: scroll();
 }
 
 .crop {
@@ -171,9 +171,9 @@ input[type=number] {
 
 @keyframes parallax {
   from {
-    object-position: 90% 35%;
+    object-position: 90% 55%;
   }
   to {
-    object-position: 90% 65%;
+    object-position: 90% 45%;
   }
 }
