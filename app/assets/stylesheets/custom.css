@@ -171,7 +171,7 @@ input[type=number] {
 
 @keyframes parallax {
   from {
-    object-position: 90% 55%;
+    object-position: 90% 35%;
   }
   to {
     object-position: 90% 65%;
