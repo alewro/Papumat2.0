@@ -4,9 +4,20 @@
   <div class="container mt-3 mb-5">
     <% @meal_plans.each do |meal_plan| %>
       <div class="d-flex justify-content-between">
-        <div>
+        <div style="width: 100%;">
           <% if meal_plan.start_date <= Date.today && Date.today <= meal_plan.end_date%>
-            <%= link_to "#{meal_plan.start_date.strftime('%d.%m')}-#{meal_plan.end_date.strftime('%d.%m')}", meal_plan, class:"btn text-start fw-bold"%>
+            <%= link_to meal_plan do %>
+                <div class="crop crop--with-caption">
+                  <% season_image = case Date.today.month
+                    when 1, 2, 12 then "winter.webp"
+                    when 3, 4, 5 then "spring.webp"
+                    when 6, 7, 8 then "summer.webp"
+                    when 9, 10, 11 then "fall.webp"
+                    end %>
+                  <%= image_tag season_image, class: "todays-meal-plan-image" %>
+                  <span class="crop__caption">Today's meal plan</span>
+                </div>
+            <% end %>    
           <% else %>
             <%= link_to "#{meal_plan.start_date.strftime('%d.%m')}-#{meal_plan.end_date.strftime('%d.%m')}", meal_plan, class:"btn text-start"%>
           <% end %>

@@ -1,5 +1,5 @@
 <div class="row border-bottom">
-  <div data-turbo="false" class="col-1 text-cente">
+  <div data-turbo="false" class="col-1 text-center">
     <%= link_to edit_shopping_list_path(shopping_list) do %>
       <%= image_tag "#{ProductCategory.find_by(id: shopping_list.product_category_id).name}.png", class:"icons pt-2" %>
     <% end %>
