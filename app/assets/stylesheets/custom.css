@@ -139,7 +139,7 @@ input[type=number] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-left: -3em;
   animation: parallax infinite;
-  animation-timeline: scroll();
+  animation-timeline: view(-100px);
 }
 
 .crop {
