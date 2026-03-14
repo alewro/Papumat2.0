@@ -1,12 +1,11 @@
 <% content_for :title, "Edit #{@recipe.name}" %>
 <div class="container">
-  <h1>Editing recipe</h1>
+  <h1 class="d-flex align-items-center fw-bolder fs-3">
+    <%= link_to "", recipes_path, class: "btn bi bi-chevron-left me-2", title: "Back to recipes" %>
+    Editing recipe
+  </h1>
 
   <%= render "form", recipe: @recipe %>
 
   <br>
-
-  <div>
-    <%= link_to "Back to recipes", recipes_path, class:"btn btn-dark mb-5" %>
-  </div>
 </div>

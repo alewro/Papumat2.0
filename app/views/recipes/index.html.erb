@@ -1,5 +1,6 @@
 <% content_for :title, "Recipes" %>
-<div class="container mt-2">
+<div class="container mt-3">
+  <p class="ps-4 fs-3 fw-bolder text-start w-100">Recipes</p>
   <div class="container mt-3 mb-5 pb-5">
     <% @recipe_categories.each do |category| %>
       <h4 class="text-center border border-dark border-2 rounded-pill bg-dark text-light"><%= category.name %></h4>

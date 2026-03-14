@@ -1,4 +1,4 @@
-<div class="row border-bottom">
+<div class="row pb-1 pt-1">
   <div data-turbo="false" class="col-1 text-center">
     <%= link_to edit_shopping_list_path(shopping_list) do %>
       <%= image_tag "#{ProductCategory.find_by(id: shopping_list.product_category_id).name}.png", class:"icons pt-2" %>
@@ -8,11 +8,12 @@
     <%= link_to shopping_list.product_name, change_is_bought_path(id: shopping_list.id), class: class_name %>
   </div>
 
-  <div class="pt-2 col-2 text-end ">
-    <% if shopping_list.product_quantity % 1 == 0 %>
-      <%= shopping_list.product_quantity.to_i %>
-    <% else %>
-      <%= shopping_list.product_quantity%>
+  <div class="pe-4 col-2 d-flex align-items-center justify-content-end">
+    <% if shopping_list.product_quantity > 1 %>
+      <span class="badge rounded-pill bg-secondary">
+        <%= shopping_list.product_quantity % 1 == 0 ? shopping_list.product_quantity.to_i : shopping_list.product_quantity %>
+      </span>
     <% end %>
   </div>
 </div> 
+<div class="border-bottom ms-1 me-1"></div>

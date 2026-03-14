@@ -1,9 +1,9 @@
 <% content_for :title, @recipe.name %>
 <div class="container">
+  <h1 class="d-flex align-items-center fw-bolder fs-3">
+    <%= link_to "", recipes_path, class: "btn bi bi-chevron-left me-2", title: "Back to recipes" %>
+    Recipe
+  </h1>
 
   <%= render @recipe %>
-  
-  <div class="mt-3 mb-5 pb-5">
-    <%= link_to "Back to recipes", recipes_path, class:"btn btn-dark" %>
-  </div>
 </div>

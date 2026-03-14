@@ -1,13 +1,15 @@
 <% content_for :title, "Meal Plan" %>
 <div class="container">
-  <h1>Editing meal plan</h1>
+  <h1 class="d-flex align-items-center fw-bolder fs-3">
+    <%= link_to "", meal_plans_path, class: "btn bi bi-chevron-left me-2", title: "Back to meal plans" %>
+    Editing meal plan
+  </h1>
 
   <%= render "form", meal_plan: @meal_plan %>
 
   <br>
 
   <div>
-    <%= link_to "Show this meal plan", @meal_plan %> |
-    <%= link_to "Back to meal plans", meal_plans_path %>
+    <%= link_to "Show this meal plan", @meal_plan %>
   </div>
 </div>

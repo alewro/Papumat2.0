@@ -1,10 +1,11 @@
 <% content_for :title, "Meal Plan  #{@meal_plan.start_date.strftime('%d.%m')}-#{@meal_plan.end_date.strftime('%d.%m')}" %>
 <div class="container mt-3 mb-5 pb-5">
+  <h1 class="d-flex align-items-center fw-bolder fs-3">
+    <%= link_to "", meal_plans_path, class: "btn bi bi-chevron-left me-2", title: "Back to meal plans" %>
+    Meal plan
+  </h1>
   <%= turbo_frame_tag "meal_plan" do %>
     <%= render @meal_plan %>
   <% end %>
-  <div>
-    <%= link_to "Back to meal plans", meal_plans_path, class:"btn btn-dark mt-2" %>
-  </div>
 </div>
 

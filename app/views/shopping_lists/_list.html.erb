@@ -2,12 +2,17 @@
   <div id="myForm" class="myForm">
     <%= render "form", shopping_list: @shopping_list%>
   </div>
-  <div id="shopping_lists" class="mb-5 fs-4 pb-5">
-    <% ShoppingList.all.order(is_bought: :asc, order_hint: :asc, product_name: :asc).each do |shopping_list| %>
-      <% if shopping_list.is_bought %>
-        <%= render shopping_list, class_name: "btn text-start form-control text-decoration-line-through fs-4" %>
-      <% else %>
-       <%= render shopping_list, class_name: "btn form-control text-start fs-4" %>
+  <div id="shopping_lists" class="ps-2 pe-2 mb-5 fs-4 pb-5">
+    <% lists = ShoppingList.all.order(is_bought: :asc, order_hint: :asc, product_name: :asc) %>
+    <% if lists.empty? %>
+      <p class="text-center text-muted mb-0">Nothing to buy yet</p>
+    <% else %>
+      <% lists.each do |shopping_list| %>
+        <% if shopping_list.is_bought %>
+          <%= render shopping_list, class_name: "btn text-start form-control text-decoration-line-through fs-4" %>
+        <% else %>
+          <%= render shopping_list, class_name: "btn form-control text-start fs-4" %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
