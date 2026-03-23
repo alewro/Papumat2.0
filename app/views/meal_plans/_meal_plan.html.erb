@@ -4,9 +4,7 @@
 
   <% RecipeCategory.all.order(:order_hint).each do |category|%>
     <% if @meal_plan.recipes.where(recipe_category_id: category.id).exists? %>
-      <div class="text-center border border-dark border-2 rounded-pill bg-dark text-light mt-3 mb-2">
-        <%= category.name %>
-      </div>
+      <%= render "meal_plan_category_header", category: category %>
       <% @meal_plan.recipes.where(recipe_category_id: category.id).each do |recipe| %>
         <div class="d-flex justify-content-between">
           <div data-turbo="false">

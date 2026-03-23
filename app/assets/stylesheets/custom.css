@@ -177,3 +177,60 @@ input[type=number] {
     object-position: 90% 45%;
   }
 }
+
+/* Meal plan category: gradient bg, frosted glass, scroll-linked parallax */
+.meal-plan-category-header {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  isolation: isolate;
+}
+
+.meal-plan-category-header.mini {
+  float: left;
+}
+
+.meal-plan-category-header__bg {
+  position: absolute;
+  inset: -18%;
+  z-index: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  transform: scale(1.14) translateY(0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .meal-plan-category-header__bg {
+    animation: meal-plan-category-header-parallax linear both;
+    animation-timeline: view(-32px);
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+.meal-plan-category-header__frost {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.22);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+}
+
+.meal-plan-category-header__label {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes meal-plan-category-header-parallax {
+  from {
+    transform: scale(1.14) translateY(-14%);
+  }
+  to {
+    transform: scale(1.14) translateY(14%);
+  }
+}

@@ -23,9 +23,7 @@
   </div>
 
   <% RecipeCategory.all.order(:order_hint).each do |label| %>
-    <div class="text-center border border-dark border-2 rounded-pill bg-dark text-light mt-3 mb-2">
-      <%= label.name %>
-    </div>
+<%= render "meal_plan_category_header", category: label %>
     <div>
       <%= form.collection_check_boxes :recipe_ids, Recipe.where(recipe_category_id: label.id), :id, :name do |r| %>
         <div class="mb-2 d-flex justify-content-start">

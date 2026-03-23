@@ -1,0 +1,12 @@
+<% basename = meal_plan_category_gradient_basename(category) %>
+<div class="meal-plan-category-header mt-3 mb-2">
+  <div
+    class="meal-plan-category-header__bg"
+    style="background-image: url('<%= image_path("#{basename}.webp") %>');"
+    role="presentation"
+  ></div>
+  <div class="meal-plan-category-header__frost" aria-hidden="true"></div>
+  <div class="meal-plan-category-header__label fs-4 p-2 ps-3 ">
+    <%= category.name %>
+  </div>
+</div>

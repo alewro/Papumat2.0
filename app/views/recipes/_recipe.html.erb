@@ -9,11 +9,11 @@
   </div>
 
   </div>
-  <h6 class="mb-2"><%= recipe.recipe_category.name %></h6>
+  <%= render "mini_meal_plan_category_header", category: recipe.recipe_category %>
   
   <p class="mb-5"><%= simple_format(recipe.description) %></p>
 
-  <h6 class="text-center">Produkty</h6>
+  <h6 class="text-center">Products</h6>
   <% recipe.products.each do |product| %>
     <div class="row d-flex justify-content-between mb-2">
       <div class="col-8 border border-dark p-1"><%= product.name %></div>
