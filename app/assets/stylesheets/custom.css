@@ -184,7 +184,7 @@ input[type=number] {
   top: 0;
   z-index: 10;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 20px;
   corner-shape: squircle;
   isolation: isolate;
 }
@@ -208,14 +208,14 @@ input[type=number] {
   opacity: 0.3;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .meal-plan-category-header__bg {
     animation: meal-plan-category-header-parallax linear both;
     animation-timeline: view(-32px);
     animation-range: entry 0% exit 100%;
-    opacity: 0.5;
+    opacity: 0.3;
   }
-}
+} */
 
 .meal-plan-category-header__frost {
   position: absolute;
