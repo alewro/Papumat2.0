@@ -180,14 +180,20 @@ input[type=number] {
 
 /* Meal plan category: gradient bg, frosted glass, scroll-linked parallax */
 .meal-plan-category-header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 10px;
+  corner-shape: squircle;
   isolation: isolate;
 }
 
 .meal-plan-category-header.mini {
   float: left;
+  position: relative;
+  top: auto;
+  z-index: auto;
 }
 
 .meal-plan-category-header__bg {
@@ -199,6 +205,7 @@ input[type=number] {
   background-repeat: no-repeat;
   transform: scale(1.14) translateY(0);
   will-change: transform;
+  opacity: 0.3;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -206,6 +213,7 @@ input[type=number] {
     animation: meal-plan-category-header-parallax linear both;
     animation-timeline: view(-32px);
     animation-range: entry 0% exit 100%;
+    opacity: 0.5;
   }
 }
 
