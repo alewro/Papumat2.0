@@ -33,7 +33,7 @@
     </div>
   <% end %>
   <div>
-    <%= form.submit onclick: 'validateform(event)', class:"btn btn-dark mt-2"%>
+    <%= form.button "", type: :submit, onclick: 'validateform(event)', class: "fab fab-primary bi bi-save", title: "Save meal plan" %>
   </div>
 <% end %>
 <%= javascript_include_tag "meal_plan_form_validation" %>
