@@ -1,4 +1,4 @@
-<div id="<%= dom_id recipe %>" class="container mt-3">
+<div id="<%= dom_id recipe %>" class="container mt-3 pb-5">
   <div class="row">
   <div class="col-8">
   <h3><%= recipe.name %></h3>
@@ -13,11 +13,11 @@
   
   <p class="mb-5"><%= simple_format(recipe.description) %></p>
 
-  <h6 class="text-center">Products</h6>
-  <% recipe.products.each do |product| %>
-    <div class="row d-flex justify-content-between mb-2">
-      <div class="col-8 border border-dark p-1"><%= product.name %></div>
-      <div class="col-3 border border-dark p-1 text-center">
+  <h6 class="text-start">Products</h6>
+  <% recipe.products.each_with_index do |product, index| %>
+    <div class="row d-flex justify-content-between">
+      <div class="col-8 border-end ps-3 p-1<%= " border-bottom" if index < recipe.products.size - 1 %>"><%= product.name %></div>
+      <div class="col-4 p-1 text-center<%= " border-bottom" if index < recipe.products.size - 1 %>">
         <% if product.quantity % 1 == 0 %>
           <%= product.quantity.to_i%>
         <% else %>
