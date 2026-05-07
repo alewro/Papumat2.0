@@ -1,25 +1,21 @@
-<%= form_with(model: shopping_list) do |form| %>
-  <div>
-    <%= form.hidden_field :is_bought, value: false %>
-  </div>
-  <div>
-    <%= form.hidden_field :product_category_id, value: 1 %>
-  </div>
+<div class="shopping-list-form">
+  <%= form_with(model: shopping_list) do |form| %>
     <div>
-    <%= form.hidden_field :order_hint, value: 0 %>
-  </div>
-
-  <div class="row">
-    <div class="col-7">
-      <%= form.text_field :product_name, autocomplete: 'off', placeholder:"Product name", class:"form-control" %>
+      <%= form.hidden_field :is_bought, value: false %>
+    </div>
+    <div>
+      <%= form.hidden_field :product_category_id, value: 1 %>
+    </div>
+      <div>
+      <%= form.hidden_field :order_hint, value: 0 %>
     </div>
 
-    <div class="col-3">
-      <%= form.number_field :product_quantity, autocomplete: 'off', step: 0.1, value: 1.0, class:"form-control" %>
+    <div class="d-flex align-items-stretch gap-2">
+      <div class="input-group flex-grow-1">
+        <%= form.text_field :product_name, autocomplete: 'off', placeholder:"Product name", style:"flex: 5", class:"form-control rounded-start-pill" %>
+        <%= form.select :product_quantity, options_for_select((-10..10).to_a, 1), {}, style:"flex: 1", class:"form-select rounded-end-pill" %>
+      </div>
+      <%= form.submit "+", class:"shopping-list-form__submit align-self-center" %>
     </div>
-
-    <div class="col-2">
-      <%= form.submit "+", class:"btn btn-dark" %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

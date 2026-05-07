@@ -20,6 +20,11 @@ input[type=number] {
   display: none;
 }
 
+#myForm {
+  position: sticky;
+  top: 8px;
+}
+
 .icons{
   height: 30px;
   width: 22px;
@@ -241,4 +246,59 @@ input[type=number] {
   to {
     transform: scale(1.14) translateY(14%);
   }
+}
+
+/* Shopping list form — sticky frosted glass */
+.shopping-list-form {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+}
+
+.shopping-list-form .input-group > .form-control,
+.shopping-list-form .input-group > .form-select {
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50rem;
+  background: rgba(255, 255, 255, 0.55);
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  font-size: 1rem;
+}
+.shopping-list-form .input-group > .form-control:focus,
+.shopping-list-form .input-group > .form-select:focus {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 0.15rem rgba(0, 0, 0, 0.08);
+}
+
+.shopping-list-form__submit {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: #212529;
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+  padding: 0;
+}
+.shopping-list-form__submit:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }

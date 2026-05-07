@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  product: one
+  order_hint: 1.0
 
 two:
-  name: MyString
-  product: two
+  name: MyString2
+  order_hint: 2.0
